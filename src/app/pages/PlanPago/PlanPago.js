@@ -6,6 +6,7 @@ import { EstadoCuenta } from "../../components/EstadoCuenta";
 import { DistribucionCuotas } from "../../components/DistribucionCuotas";
 import { ProyeccionMultas } from "../../components/ProyeccionMultas";
 import QRCode from "qrcode.react";
+import moment from 'moment';
 
 const Header = ({ planId }) => {
 
@@ -68,13 +69,51 @@ const DatosGenerales = ({ placa, rtn, propietario, solicitanteNombre, solicitant
     )
 }
 
+const DatosRecepcion = ({dateLegend}) => {
+    return (
+        <>
+        <h5 className="text-center plan-datos-title mt-5">Datos de Recepcion</h5>
+
+
+        <div className="table-responsive">
+            <table className="table">
+                <thead>
+                    <tr className="plan-datos-header">
+                        <th>
+                            Fecha
+                        </th>
+                        <th>
+                            Id Funcionario
+                        </th>
+                        <th>
+                            Nombre Funcionario
+                        </th>
+                       
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr className="plan-datos-items">
+                        <td className="pt-0">{dateLegend}</td>
+                        <td className="pt-0">{"888888"}</td>
+                        <td className="pt-0">{"Web"}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </>
+    )
+}
+
 const Observaciones = () =>{
     return <div className="observaciones mt-5">
         <p >Observación:</p>
         <p className="text-justify">La falta de pago de dos (2) cuotas en los plazos previstos en el presente Convenio de Pago, será causal suficiente para que el Instituto de la Propiedad prosiga su cobro por la vía legal, sin perjuicio de otras acciones administrativas como la publicación del adeudo en la página de la Institución.</p>
         <p className="text-justify">"Además me comprometo a pagar la mora que se encuentra registrada en el sistema y que no se incluyo en el presente plan"</p>
-        <p className="text-center mt-5">Nombre y Firma del Usuario o Representante Legal</p>
-        <div className="d-flex justify-content-between mt-5">
+        <p className="text-center  firmas">Nombre y Firma del Usuario o Representante Legal</p>
+        <div className="d-flex justify-content-between firmas">
             <p>Nombre y Firma del Oficial de Planes de Pago</p>
             <p> Nombre y Firma Gerente de Registro Vehicular / Gerente de Centro de Atención</p>
 
@@ -101,8 +140,8 @@ const PlanPagos = () => {
 
 
     const dateLegend = (planPagoDate) => {
-        const originalDate = new Date(planPagoDate);
-        return `${originalDate.getDay()}/${originalDate.getMonth()}/${originalDate.getFullYear()}`
+        
+        return moment(planPagoDate).format('DD/MM/YYYY, h:mm:ss a')
     }
 
     const mapDistribucionCuotas = (distribucion) => {
@@ -131,8 +170,9 @@ const PlanPagos = () => {
                                 <EstadoCuenta estadoCuenta={estadoCuenta} />
                                 <DistribucionCuotas distribucion={mapDistribucionCuotas(distribucionCuotas)} />
                                 <ProyeccionMultas proyeccionMultas={proyeccionMultas} />
-
+                                <DatosRecepcion dateLegend={dateLegend(fechaEmision)}/>
                                 <Observaciones/>
+                                
                             </div>
 
                         </div>
