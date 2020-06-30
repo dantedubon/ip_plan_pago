@@ -250,3 +250,73 @@ body {
 .message-error-text {
     text-align: center;
 }
+
+.plan-id {
+  color: #548FD3;
+  font-weight: bold;
+  margin-top: auto;
+  letter-spacing: 0.068em
+}
+
+.plan-pago-title {
+  font-weight: bold;
+}
+
+.plan-datos-title{
+ 
+  background-color: papayawhip; 
+  border-top: 1px solid #262786;
+  border-bottom: 1px solid #262786;
+  font-weight: normal;
+  
+}
+
+
+
+.plan-pago h5 {
+  color: #262786;
+  font-weight: 600;
+}
+
+.plan-pago-title{
+  color: #262786
+}
+
+.plan-pago td{
+  color: #262786;
+}
+
+.plan-pago thead th{
+  background-color: papayawhip; 
+} 
+
+.plan-datos-header th {
+  background-color: white !important; 
+  border-top: none;
+  border-bottom: none !important;
+} 
+.plan-datos-items td {
+  border: none;
+  color: black;
+}
+ .plan-pago th{
+  color: #262786;
+  
+  
+} 
+
+.plan-pago .total-row td {
+  color: red;
+  font-weight: 600;
+}
+
+.plan-pago .total-row th {
+  color: red;
+  font-weight: 600;
+}
+
+.observaciones {
+  color: #262786;
+  font-weight: 800;
+  
+}

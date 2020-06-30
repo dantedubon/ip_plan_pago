@@ -1,27 +1,103 @@
-import React, {useEffect} from 'react';
-import {useHistory, useParams} from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom'
 import useAPICall from "../../useAPICall";
-import {GetPlanPago} from "../../services/cuotasApi";
-import {EstadoCuenta} from "../../components/EstadoCuenta";
-import {DistribucionCuotas} from "../../components/DistribucionCuotas";
-import {ProyeccionMultas} from "../../components/ProyeccionMultas";
+import { GetPlanPago } from "../../services/cuotasApi";
+import { EstadoCuenta } from "../../components/EstadoCuenta";
+import { DistribucionCuotas } from "../../components/DistribucionCuotas";
+import { ProyeccionMultas } from "../../components/ProyeccionMultas";
+import QRCode from "qrcode.react";
+
+const Header = ({ planId }) => {
+
+    const url = `${process.env.REACT_APP_PLAN}/${planId}`;
+    return (
+        <div className="d-flex justify-content-between p-3">
+            <img
+                className="card-media  d-block"
+                src={process.env.PUBLIC_URL + "/logo IP.png"}
+                alt=""
+            />
+            <div className="d-flex flex-column align-items-center">
+                <QRCode className="qr-box" value={url} />
+                <p className="plan-id">Nº {`${planId}`} </p>
+            </div>
+
+        </div>
+    )
+}
+
+const DatosGenerales = ({ placa, rtn, propietario, solicitanteNombre, solicitanteIdentificacion }) => {
+
+    return (
+        <>
+            <h5 className="text-center plan-datos-title">Datos de Identificacion</h5>
+
+
+            <div className="table-responsive">
+                <table className="table">
+                    <thead>
+                        <tr className="plan-datos-header">
+                            <th>
+                                Placa
+                            </th>
+                            <th>
+                                RTN
+                            </th>
+                            <th>
+                                Propietario
+                            </th>
+                            <th>Identidad solicitante</th>
+                            <th>Solicitante</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr className="plan-datos-items">
+                            <td>{placa}</td>
+                            <td>{rtn}</td>
+                            <td>{propietario}</td>
+                            <td>{solicitanteIdentificacion}</td>
+                            <td>{solicitanteNombre}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </>
+    )
+}
+
+const Observaciones = () =>{
+    return <div className="observaciones mt-5">
+        <p >Observación:</p>
+        <p className="text-justify">La falta de pago de dos (2) cuotas en los plazos previstos en el presente Convenio de Pago, será causal suficiente para que el Instituto de la Propiedad prosiga su cobro por la vía legal, sin perjuicio de otras acciones administrativas como la publicación del adeudo en la página de la Institución.</p>
+        <p className="text-justify">"Además me comprometo a pagar la mora que se encuentra registrada en el sistema y que no se incluyo en el presente plan"</p>
+        <p className="text-center mt-5">Nombre y Firma del Usuario o Representante Legal</p>
+        <div className="d-flex justify-content-between mt-5">
+            <p>Nombre y Firma del Oficial de Planes de Pago</p>
+            <p> Nombre y Firma Gerente de Registro Vehicular / Gerente de Centro de Atención</p>
+
+        </div>
+    </div>
+}
 
 const PlanPagos = () => {
-    const {planId} = useParams();
+    const { planId } = useParams();
     const history = useHistory();
-    if(!planId){
+    if (!planId) {
         history.push("/")
     }
 
-    const [planPagos,error, getPlanPagos] = useAPICall(GetPlanPago)
+    const [planPagos, error, getPlanPagos] = useAPICall(GetPlanPago)
 
-    const {placa, propietario, rtn, solicitanteNombre,
+    const { placa, propietario, rtn, solicitanteNombre,
         fechaEmision,
-        solicitanteIdentificacion, estadoCuenta,distribucionCuotas, proyeccionMultas} = planPagos || {};
+        solicitanteIdentificacion, estadoCuenta, distribucionCuotas, proyeccionMultas } = planPagos || {};
 
-    useEffect(() =>{
-        getPlanPagos({planId})
-    },[]);
+    useEffect(() => {
+        getPlanPagos({ planId })
+    }, []);
 
 
     const dateLegend = (planPagoDate) => {
@@ -29,61 +105,43 @@ const PlanPagos = () => {
         return `${originalDate.getDay()}/${originalDate.getMonth()}/${originalDate.getFullYear()}`
     }
 
-    const mapDistribucionCuotas = (distribucion) =>{
+    const mapDistribucionCuotas = (distribucion) => {
         return {
-            distribucionCuotas : distribucion
+            distribucionCuotas: distribucion
         }
     }
+
+
     return (
         <div className="card w-100">
 
-            <img
-                className="card-media mx-auto d-block"
-                src={process.env.PUBLIC_URL + "/logo IP.png"}
-                alt=""
-            />
+            <Header planId={planId} />
+
+
             {
-                !error && planPagos &&  <div className="card-body">
+                !error && planPagos && <div className="card-body">
                     <div id="subscription">
-                        <h4 className="card-title">Plan de Pago # {planId}</h4>
-                        <p className="card-description">
-                           Fecha de Emision {dateLegend(fechaEmision)}
-                        </p>
-                        <hr/>
-                        <div className="plan-pago">
-                            <h5>Datos Generales</h5>
-                            <ul className="list-group">
-                                <li className="list-group-item">
-                                    <p className="label-list">Placa de vehículo:</p>
-                                    <p className="info-list">{placa}</p>
-                                </li>
-                                <li className="list-group-item">
-                                    <p className="label-list">RTN:</p>
-                                    <p className="info-list">{rtn}</p>
-                                </li>
-                                <li className="list-group-item">
-                                    <p className="label-list">Nombre del propietario:</p>
-                                    <p className="info-list">{propietario}</p>
-                                </li>
-                                <li className="list-group-item">
-                                    <p className="label-list">Nombre de la persona solicitante de plan de pago:</p>
-                                    <p className="info-list">{solicitanteNombre}</p>
-                                </li>
-                                <li className="list-group-item">
-                                    <p className="label-list">Identidad de la persona solicitante de plan de pago:</p>
-                                    <p className="info-list">{solicitanteIdentificacion}</p>
-                                </li>
-                            </ul>
-                            <EstadoCuenta estadoCuenta={estadoCuenta}/>
-                            <DistribucionCuotas distribucion={mapDistribucionCuotas(distribucionCuotas)}/>
-                            <ProyeccionMultas proyeccionMultas={proyeccionMultas}/>
+                        <h1 className="card-title plan-pago-title text-center ">Convenio de Plan de Pago</h1>
+
+
+                        <div className="plan-pago mt-5">
+                            <DatosGenerales placa={placa} rtn={rtn} propietario={propietario} solicitanteNombre={solicitanteNombre} solicitanteIdentificacion={solicitanteIdentificacion} />
+
+                            <div className="plan-pago-estado-cuenta">
+                                <EstadoCuenta estadoCuenta={estadoCuenta} />
+                                <DistribucionCuotas distribucion={mapDistribucionCuotas(distribucionCuotas)} />
+                                <ProyeccionMultas proyeccionMultas={proyeccionMultas} />
+
+                                <Observaciones/>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             }
             {
                 error && <div className="card-body">
-                     <h3 className="message-error-text">{error}</h3>
+                    <h3 className="message-error-text">{error}</h3>
                 </div>
 
             }

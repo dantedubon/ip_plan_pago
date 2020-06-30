@@ -9,7 +9,7 @@ export const ProyeccionMultas = ({proyeccionMultas}) => {
     const {detalle, tuavMulta, tvmMulta, total} = proyeccionMultas;
     return (
         <>
-            <h5 className="mt-4">Proyeccion de Multas</h5>
+            <h5 className="mt-4 text-center">Proyeccion de Multas</h5>
             <div className="table-responsive">
                 <table className="table">
                     <thead>

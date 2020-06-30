@@ -39,7 +39,7 @@ export const EstadoCuenta = ({estadoCuenta}) => {
 
     return (
         <>
-            <h5 className="mt-3">Estado de Cuenta</h5>
+            <h5 className="mt-3 text-center">Estado de Cuenta</h5>
             <div className="table-responsive">
                 <table className="table">
                     <thead>
