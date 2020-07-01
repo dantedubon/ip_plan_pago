@@ -12,7 +12,7 @@ import { useReactToPrint } from 'react-to-print';
 const Header = ({ planId, hasError }) => {
 
     const url = `${process.env.REACT_APP_PLAN}/${planId}`;
-    const justify = hasError? 'justify-content-center': 'justify-content-between'
+    const justify = hasError ? 'justify-content-center' : 'justify-content-between'
     return (
         <div className={`d-flex ${justify} p-3`}>
             <img
@@ -171,8 +171,18 @@ const PlanPagos = () => {
                 !error && planPagos && <div className="card-body">
                     <div id="subscription">
                         <h1 className="card-title plan-pago-title text-center ">Convenio de Plan de Pago</h1>
+                        <div className="d-flex justify-content-end">
+                            <button id="btn-print" className="btn btn-primary" onClick={handlePrint}>
+                            Imprimir &nbsp;
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-printer-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5z" />
+                                    <path fillRule="evenodd" d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z" />
+                                    <path fillRule="evenodd" d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                                </svg>
+                                
+                                </button>
+                        </div>
 
-                      
                         <div className="plan-pago-final mt-5">
                             <DatosGenerales placa={placa} rtn={rtn} propietario={propietario} solicitanteNombre={solicitanteNombre} solicitanteIdentificacion={solicitanteIdentificacion} />
 
@@ -185,10 +195,8 @@ const PlanPagos = () => {
 
                                 <DatosRecepcion dateLegend={dateLegend(fechaEmision)} />
                                 <Observaciones />
-                                <div className="d-flex justify-content-center"> 
-                                <button id="btn-print" className="btn btn-primary" onClick={handlePrint}>Imprimir Plan de Pago</button>
-                                </div>
-                                
+
+
 
                             </div>
 

@@ -2,10 +2,8 @@ export const currencyFormatter = (data) => {
     if (data === 0) {
         return "-";
     }
-    return new Intl.NumberFormat("es-HN", {
-        style: "currency",
-        currency: "HNL",
-    }).format(data);
+    const formatedDecimal = new Intl.NumberFormat("en-US", {minimumFractionDigits: 2}).format(data)
+    return `L. ${formatedDecimal}`;
 };
 export const dateFormatter = (data) => {
     const date = new Date(data);

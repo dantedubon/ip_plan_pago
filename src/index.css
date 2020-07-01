@@ -361,3 +361,15 @@ body {
     display: none;
   }
 }
+
+th {
+  text-align: center;
+}
+
+.plan-datos-items tr {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
