@@ -148,7 +148,7 @@ const Subscription = () => {
                                       >
                                           Enviar
                                       </button>
-                                      <button type="button" className="btn btn-secondary" onClick={()=> history.push(process.env.REACT_APP_CONSULTA_VEHICULAR)}>
+                                      <button type="button" className="btn btn-secondary" onClick={()=> window.location = process.env.REACT_APP_CONSULTA_VEHICULAR}>
                                           Cancelar
                                       </button>
                                   </div>

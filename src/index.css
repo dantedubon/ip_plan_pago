@@ -273,7 +273,7 @@ body {
 
 
 
-.plan-pago h5 {
+.plan-pago-final h5 {
   color: #262786;
   font-weight: 600;
 }
@@ -282,35 +282,38 @@ body {
   color: #262786
 }
 
-.plan-pago td{
+.plan-pagos-table td{
   color: #262786;
 }
 
-.plan-pago thead th{
+.plan-pagos-table .plan-pago-final thead th{
   background-color: papayawhip; 
+} 
+.plan-pagos-table thead th{
+  background-color: papayawhip ; 
 } 
 
 .plan-datos-header th {
   background-color: white !important; 
   border-top: none;
   border-bottom: none !important;
+  color: #262786 ;
 } 
 .plan-datos-items td {
   border: none;
   color: black;
 }
- .plan-pago th{
-  color: #262786;
-  
-  
+ .plan-pagos-table th{
+  color: #262786; 
 } 
 
-.plan-pago .total-row td {
+
+.plan-pagos-table .total-row td {
   color: red;
   font-weight: 600;
 }
 
-.plan-pago .total-row th {
+.plan-pagos-table .total-row th {
   color: red;
   font-weight: 600;
 }

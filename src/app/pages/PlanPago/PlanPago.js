@@ -173,7 +173,7 @@ const PlanPagos = () => {
                         <h1 className="card-title plan-pago-title text-center ">Convenio de Plan de Pago</h1>
 
                       
-                        <div className="plan-pago mt-5">
+                        <div className="plan-pago-final mt-5">
                             <DatosGenerales placa={placa} rtn={rtn} propietario={propietario} solicitanteNombre={solicitanteNombre} solicitanteIdentificacion={solicitanteIdentificacion} />
 
                             <div className="plan-pago-estado-cuenta">
