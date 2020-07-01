@@ -100,7 +100,7 @@ const DatosRecepcion = ({ dateLegend }) => {
                     <tbody>
                         <tr className="plan-datos-items">
                             <td className="pt-0">{dateLegend}</td>
-                            <td className="pt-0">{"888888"}</td>
+                            <td className="pt-0">{"8888-8888-88888"}</td>
                             <td className="pt-0">{"Web"}</td>
 
                         </tr>
