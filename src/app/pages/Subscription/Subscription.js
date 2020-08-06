@@ -69,7 +69,7 @@ const Subscription = () => {
                 placa && <div className="card-body">
                     <div >
 
-                        <h4 className="card-title">Subscripción de Plan de Pago</h4>
+                        <h4 className="card-title">Suscripción de Plan de Pago</h4>
                         <p className="card-description">
                             Por favor ingrese el número de RTN del propietario según el sistema a el
                             número de motor,VIN o Chasis
